@@ -1,0 +1,68 @@
+# BESTIA Documentation - Jekyll Configuration
+
+title: "BESTIA Documentation"
+description: >-
+  BESTIA - Backend Engine for Scalable, Transactional, Integrated Applications.
+  Unify your schema, business logic, and persistent data in one portable artifact.
+
+# Jekyll theme setup (using the Cayman theme supported by GitHub Pages)
+theme: jekyll-theme-cayman
+
+# Repository metadata for GitHub Pages
+repository: szczuroskoczek/bestia
+
+# Site metadata
+url: "https://szczuroskoczek.github.io"
+baseurl: "/bestia" # Adjust if using a custom domain; leave as "" if not needed
+
+# Social and author information
+author:
+  name: "Krystian Mikołajczyk"
+  github_username: "szczuroskoczek"
+
+# Markdown rendering options
+markdown: kramdown
+highlighter: rouge
+
+# Navigation links (shown in the top navigation bar)
+nav_links:
+  - title: "Home"
+    url: "/"
+  - title: "Overview"
+    url: "/overview"
+  - title: "Core Concepts"
+    url: "/core-concepts"
+  - title: "Migrations"
+    url: "/migrations"
+  - title: "Deployment"
+    url: "/deployment"
+  - title: "FAQ"
+    url: "/faq"
+  - title: "Roadmap"
+    url: "/roadmap"
+
+# Default layout for all pages
+defaults:
+  - scope:
+      path: "" # all files
+      type: "pages"
+    values:
+      layout: "default"
+
+# Exclude these files/directories from the build process
+exclude:
+  - node_modules/
+  - vendor/
+  - .gitignore
+  - package.json
+  - package-lock.json
+  - yarn.lock
+  - LICENSE
+  - README.md
+
+# Optional: Google Analytics (uncomment and replace UA-XXXXXX-X if needed)
+# google_analytics: "UA-XXXXXX-X"
+
+# Plugins for additional functionality
+plugins:
+  - jekyll-seo-tag

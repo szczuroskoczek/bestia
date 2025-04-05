@@ -1,28 +1,17 @@
 # BESTIA Monorepo
 
-**BESTIA** – Backend Engine for Scalable, Transactional, Integrated Applications  
-_A unified, agnostic backend engine that merges your application logic with persistent storage into a single, portable artifact._
+**BESTIA – Backend Engine for Scalable, Transactional, Integrated Applications**
+
+BESTIA is a unified, agnostic backend engine that merges your application’s schema, business logic, and persistent data into a single, portable artifact. It’s designed to simplify deployment across Node.js, Docker, serverless platforms, IoT devices, and eventually desktop/browser environments.
 
 ---
 
 ## TL;DR
 
-BESTIA is a modern backend engine designed to simplify application development by unifying database schema, business logic, and dynamic data into one deployable unit. This monorepo contains all components of BESTIA:
-- **Core:** The shared libraries for storage, migration, and execution.
-- **Compiler:** A Node.js tool that compiles TypeScript-decorated schemas into a BESTIA manifest (immutable definitions).
-- **Engine:** The runtime that loads the manifest, applies migrations, and manages dynamic data (snapshots, logs, indexes).
-- **Integrations & CLI:** Adapters and command-line tools for various environments (Node.js, Docker, SaaS, etc.).
-- **Docs:** Comprehensive documentation and guides (hosted via GitHub Pages).
-
----
-
-## Overview & Vision
-
-BESTIA addresses a common pain point in modern application development—the separation between backend logic and database management. By unifying these layers into one portable file, BESTIA:
-- **Simplifies Deployments:** One artifact for schema, logic, and persistent data.
-- **Enhances Developer Productivity:** Define your data models, commands, and queries using TypeScript decorators.
-- **Streamlines Migrations:** Built-in strategies automatically manage schema evolution while preserving data integrity.
-- **Supports Multiple Environments:** Whether in a Docker container, serverless function, Node.js app, or IoT device, BESTIA adapts to your deployment needs.
+- **Unified Architecture:** One file (the BESTIA Manifest) holds your immutable schema/logic; dynamic data (snapshots, logs, indexes) is persisted separately.
+- **Multiple Deployments:** Use BESTIA as a hosted SaaS, Docker container, embedded Node.js module, or on IoT devices.
+- **Seamless Migrations:** Built-in strategies automatically evolve your schema without manual intervention for common changes.
+- **Developer-Centric:** Leverage TypeScript decorators to define models and operations (Queries and Actions) in an intuitive, type-safe way.
 
 ---
 
@@ -30,28 +19,21 @@ BESTIA addresses a common pain point in modern application development—the sep
 
 ```
 bestia-monorepo/
-├── docs/                   # Documentation: guides, architecture overviews, migration strategies, FAQs, etc.
+├── docs/                   # Documentation files (this site)
 ├── packages/
-│   ├── core/               # Shared libraries (storage engine, migration logic, command/query execution)
-│   ├── compiler/           # Compiler that transforms TypeScript schemas (with decorators) into a BESTIA manifest
-│   ├── engine/             # Runtime engine that loads the manifest, handles migrations, and persists dynamic data
-│   ├── integrations/       # Environment-specific adapters (Node.js, Docker, SaaS, etc.)
+│   ├── core/               # Shared libraries: storage engine, migration logic, operation execution
+│   ├── compiler/           # Compiler that transforms your TypeScript-decorated schemas into a BESTIA Manifest
+│   ├── engine/             # Runtime engine that loads the manifest, applies migrations, and persists dynamic data
+│   ├── integrations/       # Adapters for Node.js, Docker, SaaS, etc.
 │   └── cli/                # Command-line tools for building, migrating, deploying, etc.
-├── .gitignore              # Common ignore patterns for Node.js projects
-├── LICENSE                 # License file (see below)
+├── .gitignore              # Git ignore patterns
+├── LICENSE                 # Licensing information
 └── README.md               # This file
 ```
 
 ---
 
 ## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (version 14+ recommended)
-- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) (for managing packages)
-
-### Installation
 
 1. **Clone the Repository:**
 
@@ -60,52 +42,51 @@ bestia-monorepo/
    cd bestia-monorepo
    ```
 
-2. **Install Dependencies:**
+2. **Install Dependencies:**  
+   Use Yarn or npm with workspaces if desired.
 
-   If using Yarn Workspaces:
    ```bash
    yarn install
    ```
 
-   Or with npm:
+   or
+
    ```bash
    npm install
    ```
 
-3. **Run the Compiler (Example):**
+3. **Build & Run Examples:**
 
-   Navigate to the `packages/compiler` directory and run:
-   ```bash
-   npm run build
-   npm run compile
-   ```
-   This generates your BESTIA manifest (e.g., `.bestia-manifest`) based on your TypeScript schemas.
+   - Run the compiler (in `packages/compiler`) to generate the BESTIA Manifest (e.g., `.bestia-manifest`).
+   - Start the engine (in `packages/engine`) to load the manifest, apply migrations, and serve operations.
 
-4. **Run the Engine (Example):**
-
-   In the `packages/engine` directory:
-   ```bash
-   npm run start
-   ```
-   The engine will load the manifest, check for migrations, and start processing commands and queries.
-
----
-
-## Documentation
-
-All documentation is located in the `docs/` folder. To view the docs on GitHub Pages:
-
-1. Go to the repository’s **Settings** on GitHub.
-2. Scroll down to the **GitHub Pages** section.
-3. Set the source to the `docs/` folder.
-4. Access your docs via the provided URL.
-
-Each documentation page starts with a TL;DR summary to provide a quick overview before diving into details.
+4. **Documentation:**  
+   See the `docs/` folder for detailed guides.
 
 ---
 
 ## License
 
-BESTIA is available for personal, experimental use only. All commercial use is prohibited without explicit written permission from the author. For now, this project is licensed under the [PolyForm Noncommercial License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/).
+BESTIA is available for personal and experimental use only. All commercial use is prohibited without explicit written permission. Currently, BESTIA is licensed under the [PolyForm Noncommercial License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/).  
+_Note: This license is not OSI-approved; dual licensing may be considered in the future._
 
-> **Note:** This license is not OSI-approved. After a successgul stable release, the license will be updated to an OSI-approved license.
+---
+
+## Contributing
+
+Contributions are welcome while BESTIA is in its experimental phase. Please see [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) for guidelines.
+
+---
+
+## Roadmap
+
+- Enhance core storage performance and migration automation.
+- Expand integrations for serverless, Docker, and IoT.
+- Improve developer tools and documentation.
+- Explore future browser/desktop deployments.
+
+For detailed updates, see [docs/roadmap.md](./docs/roadmap.md).
+
+---
+
+_Unleash the power of unified backend development with BESTIA!_

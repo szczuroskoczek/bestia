@@ -1,42 +1,43 @@
 ---
 title: "Migrations"
-tldr: "BESTIA manages schema evolution by combining auto-migration for simple changes with explicit migration advisories for complex updates, ensuring data integrity."
+tldr: "BESTIA manages schema evolution with automated migration for simple changes and explicit advisories for complex updates, ensuring data integrity across versions."
 ---
 
 # Migrations
 
 ## TL;DR
 
-As your application evolves, BESTIA ensures that your dynamic data stays consistent with your schema. Simple changes can be auto-migrated, while complex changes (such as changing password storage from plain text to hashed) require explicit migration advisories. Each migration step is versioned and applied sequentially.
+As your application evolves, BESTIA ensures that your dynamic data remains consistent with your schema. For straightforward changes, BESTIA automatically updates data. For complex changes—such as converting plain-text passwords to hashed values—developers provide explicit migration advisories. Each migration step is versioned and applied sequentially.
 
 ## The Challenge of Schema Evolution
 
 - **Immutable History vs. Evolving Schema:**  
-  Historical mutations may no longer be valid if the schema changes. BESTIA handles this by using snapshots as the true baseline, and migration advisories update dynamic data accordingly.
-  
+  Historical operations may become invalid if the schema changes. BESTIA uses snapshots as the true baseline and applies migration advisories to update dynamic data.
+
 - **Versioning:**  
-  Each compiled manifest contains a version identifier. The engine compares this against the version stored with your dynamic data to decide if migrations are needed.
+  Each BESTIA Manifest carries a version identifier. The engine compares this with the version stored with your dynamic data to determine if migrations are necessary.
 
 ## Migration Strategies
 
 1. **Auto-Migration:**  
-   For non-breaking changes (e.g., adding a new column with a default value), BESTIA automatically updates the dynamic data.
+   For non-breaking changes (e.g., adding a new field with a default value), BESTIA automatically updates dynamic data.
 
 2. **Explicit Migration Advisories:**  
    For breaking changes, such as:
-   - Changing a password field from plain text to hashed values.
-   - Renaming or removing columns.
-   The developer writes a migration script (e.g., `src/beast/evolution/1.2.2.js`) that transforms the old data to match the new schema.
 
-3. **New Baseline on Breaking Changes:**  
-   In cases where migration is too complex, BESTIA can archive old logs and create a new snapshot baseline, marking a fresh start while preserving audit trails.
+   - Renaming or removing fields.
+   - Transforming data (e.g., converting plain passwords to hashed passwords).
+
+   Developers write migration scripts (e.g., in `src/bestia/evolution/1.2.2.js`) that detail the transformation from the old schema to the new one.
+
+3. **New Baseline Creation:**  
+   When migrations are too complex, BESTIA can archive old logs and create a new snapshot baseline while preserving the audit trail.
 
 ## Developer Workflow
 
 - **During Development:**  
-  Build your manifest using the BESTIA compiler. As changes occur, maintain a migration folder (`src/beast/evolution/`) with versioned scripts.
-  
+  Build your manifest using the BESTIA Compiler. Maintain a migration folder (`src/bestia/evolution/`) with versioned migration scripts.
 - **In Production:**  
-  When a new manifest is deployed, the engine detects a version mismatch and applies pending migrations sequentially before going live.
+  On deployment, the engine detects a version mismatch and sequentially applies pending migrations to update the dynamic data before going live.
 
 [Learn About Deployment](deployment.md)
